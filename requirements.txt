@@ -1,5 +1,4 @@
 pygame
-os
 PIL
 glob
 pandas
