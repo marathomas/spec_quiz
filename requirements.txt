@@ -1,3 +1,7 @@
+tkinter
 pygame
+PIL
+os
+glob
 pandas
 
