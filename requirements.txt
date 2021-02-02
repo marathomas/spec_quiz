@@ -1,5 +1,3 @@
 pygame
-PIL
-glob
 pandas
 
