@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 
 from tkinter import Tk, Frame, Label, Button, Entry
@@ -18,6 +18,7 @@ from pandas import read_csv
 
 audios = sorted(glob('data/wavs/'+'*.wav'))
 ids = [basename(x).split('.')[0] for x in audios]
+nb_audios = ['data/nb_wavs/'+basename(x) for x in audios]
 
 
 # In[3]:
@@ -33,7 +34,7 @@ img_paths = find_corresponding('data/imgs/', ids)
 nb_img_paths = find_corresponding('data/nb_imgs/', ids)  
 
 
-# In[5]:
+# In[4]:
 
 
 info_tab=read_csv('data/info.csv')
@@ -46,7 +47,7 @@ DEFAULT_IMG = 'data/default_img.png'
 SR = 8000
 
 
-# In[19]:
+# In[5]:
 
 
 answers = []
@@ -97,11 +98,15 @@ class Question:
         label = Label(view, text="Five nearest neighbors:", bd=4)
         label.pack(side="top")
 
-        button_m = Button(view, text="Play sound again",command=play_music)
+        button_m = Button(view, text="Play sound",command=play_music)
         button_m.pack(side="top")
         
+        button_m = Button(view, text="Play nearest neighbor sound",command=play_nb_music)
+        button_m.pack(side="top")
+        
+        
         # Show spec
-        img = show_image(nb_img_paths)
+        img = show_image(nb_img_paths, False)
         spec_img = Label(view, image=img)
         spec_img.pack(side = "top", fill = "both", expand = "yes")
         
@@ -143,7 +148,7 @@ class Question:
         info.pack(side="top")
         
         # Show spec
-        img = show_image(img_paths)
+        img = show_image(img_paths, True)
         spec_img = Label(view, image=img)
         spec_img.pack(side = "bottom", fill = "both", expand = "yes")
 
@@ -186,12 +191,19 @@ def play_music():
     mixer.music.load(audios[index])
     mixer.music.play()
 
-def show_image(image_path):
+def play_nb_music():
+    global questions, window, index, button, right, number_of_questions
+    mixer.music.load(nb_audios[index])
+    mixer.music.play()
+
+def show_image(image_path, do_resize):
     global img, index
     if image_path[index] != 'NA':
         image1 = Image.open(image_path[index])
     else:
         image1 = Image.open(DEFAULT_IMG)
+    if do_resize:
+        image1 = image1.resize((360 , 240), Image.ANTIALIAS)
     img = ImageTk.PhotoImage(image1)
     return img
     
@@ -203,4 +215,10 @@ button = Button(window, text="Start", command=askQuestion)
 button.pack()
 
 window.mainloop()
+
+
+# In[ ]:
+
+
+
 
