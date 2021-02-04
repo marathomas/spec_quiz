@@ -1,4 +1,50 @@
-116;cc
+116;al
 122;mo
 139;cc
-144;sn
+144;soc
+146;mo
+15;mo
+16;cc
+166;mo
+169;mo
+179;ld
+185;soc
+20;cc
+218;mo
+219;sn
+222;sn
+226;mo
+243;cc
+283;agg
+304;cc
+305;agg
+313;agg
+320;ld
+328;sn
+378;cc
+386;soc
+402;mo
+427;agg
+437;soc
+446;al
+453;soc
+454;cc
+461;mo
+472;soc
+506;sn
+534;mo
+54;soc
+579;cc
+584;sn
+599;cc
+633;cc
+674;soc
+689;mo
+694;agg
+750;agg
+778;Not a real call
+784;Not a real call
+798;Not a real call
+802;sn
+811;Not a real call
+814;Not a real call
